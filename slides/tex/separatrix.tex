@@ -1,0 +1,94 @@
+\begin{frame}{Dynamical system and separatrix}
+	\begin{itemize}
+		\item System
+		%
+		\begin{align}
+			\dot x(t) &= f(x(t), p)
+		\end{align}
+		%
+		$x:\R \rightarrow \R^2$, $p \in \R$, $f: \R^2 \times \R \rightarrow \R^2$
+		%
+		\item Steady states
+		%
+		\begin{align}
+			0 &= f(x_s, p)
+		\end{align}
+		%
+		\item Jacobian in saddle point
+		%
+		\begin{align}
+			A_s &= \pdiff{f}{x}(x_s, p)
+		\end{align}
+		%
+		\item Eigenvalues and eigenvectors
+		%
+		\begin{align}
+			A_s v_s &= \lambda_s v_s
+		\end{align}
+		%
+		\item Let $x_s$ be a saddle point (one eigenvalue with negative real part and one with positive real part). Then, the separatrix~\cite{Fay:Jourbert:2010} is computed by solving the final value problem
+		%
+		\begin{subequations}\label{eq:fvp}
+			\begin{align}
+				x(t_f) &= x_s, \\
+				\dot x(t) &= f(x(t), p)
+			\end{align}
+		\end{subequations}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Computation of separatrix and sensitivities}
+	\begin{itemize}
+		\item We approximate the solution to the final value problem~\eqref{eq:fvp} by solving the initial value problem
+		%
+		\begin{subequations}
+			\begin{align}
+				x(\tau_0) &= x_s + \epsilon v_s, \\
+				\dot x(\tau) &= -f(x(\tau), p)
+			\end{align}
+		\end{subequations}
+		%
+		corresponding to the parametrization of time $t = -\tau$. Here, $v_s$ is the eigenvector corresponding to the stable eigenvalue of the saddle point, and $\epsilon$ is a small number, e.g., $10^{-3}$ or $10^{-6}$.
+		%
+		\item Sensitivities, $S = \pdiff{x}{p}$
+		%
+		\begin{subequations}
+			\begin{align}
+				S(\tau_0) &= \pdiff{x_s}{p} + \epsilon \pdiff{v_s}{p}, \\
+				\dot S(\tau) &= -\left(\pdiff{f}{x}(x(\tau), p) S(t) + \pdiff{f}{p}(x(\tau), p)\right)
+			\end{align}
+		\end{subequations}
+		%
+		\item Sensitivity of steady state
+		%
+		\begin{align}
+			\pdiff{f}{x}(x_s, p) \pdiff{x_s}{p} + \pdiff{f}{p}(x_s, p) &= 0
+		\end{align}
+		%
+		or
+		%
+		\begin{align}
+			\pdiff{x_s}{p} &= -\left(\pdiff{f}{x}(x_s, p)\right)^{-1} \pdiff{f}{p}(x_s, p)
+		\end{align}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Computation of separatrix and sensitivities}
+	\begin{itemize}
+		\item Derivatives of eigenvector~\cite{Petersen:Pedersen:2012, AbouMoustafa:2009}. We compute the Moore-Penrose inverse $(\,\cdot\,)^+$ using Matlab's \texttt{pinv}.
+		%
+		\begin{align}
+			\pdiff{v_s}{p} &= (\lambda_s I - A_s)^+ \pdiff{A_s}{p} v_s
+		\end{align}
+		%
+		\item At any given point on the separatrix, it is only the component of the sensitivity that is orthogonal to the separatrix that indicates a change in its shape
+		%
+		\item In contrast, the component of the sensitivity that is parallel to the seperatrix only indicates a change in its parametrization, i.e., on its dependency on the underlying parameter, which is $\tau$
+		%
+		\item Orthogonal part of sensitivities (the tangent of the separatrix is $-f(x(\tau), p)$)
+		%
+		\begin{align}
+			\bar S(\tau) &= S(\tau) - \left(\frac{S^T(\tau) f(x(\tau), p)}{\|f(x(\tau), p)\|^2}\right) f(x(\tau), p)
+		\end{align}
+	\end{itemize}
+\end{frame}
