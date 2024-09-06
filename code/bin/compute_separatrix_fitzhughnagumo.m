@@ -232,7 +232,7 @@ quiver(xs(1, 2), xs(2, 2), v(1, 1, 2), v(2, 1, 2), 'off', 'LineWidth', 2, ...
 set(gca, 'ColorOrderIndex', 1);
 
 % Plot subspaces of saddle point
-quiver(xs(1, 2), xs(2, 2), v(1, 2, 2), v(2, 2, 2), 'LineWidth', 2, ...
+quiver(xs(1, 2), xs(2, 2), v(1, 2, 2), v(2, 2, 2), 'off', 'LineWidth', 2, ...
     'HandleVisibility', 'off');
 
 % Reset color order
@@ -287,7 +287,7 @@ legend('Location', 'SouthEast', 'NumColumns', 2);
 
 %% Save figure
 exportgraphics(gcf, './eps/fitzhughnagumo.eps');
-exportgraphics(gcf, './eps/fitzhughnagumo.png');
+exportgraphics(gcf, './png/fitzhughnagumo.png');
 
 %% Functions
 function [f, dfx, dfp, d2fxp] = fitzhughnagumo(x, p, q)
